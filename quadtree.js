@@ -81,6 +81,9 @@ function Quadtree(width, height){
 				node.leaf = true;
 				node.content = value;
 			} else {
+				if(node.content.x == value.x && node.content.y == value.y){
+					return false;
+				}
 				node.leaf = false;
 				node.internal = true;
 				node.children = [
