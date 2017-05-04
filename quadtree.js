@@ -119,7 +119,15 @@ function Quadtree(width, height){
 		return nearest(x, y, best, root, width, height);
 	}
 
-	function nearest(x, y, best, node, width, height) {
+	function getNearestNeighbor(point){
+		var best = {
+			 distance: height+width
+			,point: null
+		}
+		return nearest(point.x, point.y, best, root, width, height, true);
+	}
+
+	function nearest(x, y, best, node, width, height, getNeighbor) {
 		
 		var left = node.centerX - width/2;
 		var right = node.centerX + width/2;
@@ -132,17 +140,19 @@ function Quadtree(width, height){
 		}
 
 		if(node.internal){
-			best = nearest(x, y, best, node.children[0], width/2, height/2);
-			best = nearest(x, y, best, node.children[1], width/2, height/2);
-			best = nearest(x, y, best, node.children[2], width/2, height/2);
-			best = nearest(x, y, best, node.children[3], width/2, height/2);
+			best = nearest(x, y, best, node.children[0], width/2, height/2, getNeighbor);
+			best = nearest(x, y, best, node.children[1], width/2, height/2, getNeighbor);
+			best = nearest(x, y, best, node.children[2], width/2, height/2, getNeighbor);
+			best = nearest(x, y, best, node.children[3], width/2, height/2, getNeighbor);
 		} else {
 			if(node.leaf){
 				var point = node.content;
 				var distance = Math.sqrt(Math.pow(point.x - x, 2) + Math.pow(point.y - y, 2));
 				if (distance < best.distance) {
-					best.distance = distance;
-					best.point = point;
+					if(!(getNeighbor && distance === 0)){
+						best.distance = distance;
+						best.point = point;
+					}
 				}
 			} else {
 				return best;
@@ -291,7 +301,11 @@ function Quadtree(width, height){
 		 insert: insert
 		,doRender: doRender
 		,getNearest: getNearest
+		,getNearestNeighbor: getNearestNeighbor
 		,remove: remove
+		,getCount: function(){
+			return count;
+		}
 	};
 	
 }
