@@ -32,7 +32,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="mobile-web-app-capable" content="yes">
 		
-		<link href="./style.css?v=0" rel="stylesheet" type="text/css" media="all">
+		<link href="./style.css?v=1" rel="stylesheet" type="text/css" media="all">
 	</head>
 
 
@@ -52,22 +52,33 @@
 				<label class="fancyRadio" for="mode-nearest">
 					Find nearest
 				</label>
-				<input class="fancyRadio" type="radio" value="delete" name="mode" id="mode-delete">
+				<!--input class="fancyRadio" type="radio" value="delete" name="mode" id="mode-delete">
 				<label class="fancyRadio" for="mode-delete">
 					Find nearest and delete
-				</label>
+				</label-->
+			</div>
+			<div class="menuContainer">
+				<button id="add100PointsButton">Add 100 points</button>
+				<button id="add1000PointsButton">1k</button>
+				<button id="add10000PointsButton">10k</button>
+				<button id="add100000PointsButton">100k</button>
+				<button id="add1000000PointsButton">1M</button>
+			</div>
+			<div class="menuContainer">
+				<button id="redrawButton">Redraw</button>
+				<button id="clearButton">Clear</button>
 			</div>
 		</header>
 		<div id="canvasContainer">
-			<div id="infobox">Depth: 0</div>
+			<div id="infobox">Depth: 0<br>Points: 0</div>
 			<canvas id="canvas"></canvas>
 		</div>
 		<footer>
 			<p id="footer">by <a rel="author" href="http://draemm.li">Roland Rytz</a> - <a href="https://github.com/RolandR/quadtree">Source</a></p>
 		</footer>
 
-		<script type="text/javascript" src="./quadtree.js?v=2"></script>
-		<script type="text/javascript" src="./quadtreeTest.js?v=0"></script>
+		<script type="text/javascript" src="./quadtree.js?v=3"></script>
+		<script type="text/javascript" src="./quadtreeTest.js?v=1"></script>
 	</body>
 	
 </html>

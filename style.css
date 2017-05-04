@@ -48,11 +48,21 @@ h1{
 	text-shadow: 2px 2px 0px #000000;
 }
 
+.menuContainer{
+	display: inline-block;
+	border-left: 1px #555555 solid;
+	margin-left: 10px;
+	padding-left: 15px;
+	height: 100%;
+}
+
 #canvasContainer{
 	flex-grow: 1;
 	width: 100%;
 	background-color: #000000;
 	cursor: crosshair;
+	padding: 0px;
+	overflow: hidden;
 }
 
 #infobox{
@@ -66,17 +76,21 @@ footer{
 	padding: 10px;
 }
 
-label.fancyRadio{
+label.fancyRadio,
+button{
 	background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+	background-color: #333333;
+	font-size: 16px;
+	color: #FFFFFF;
 	border: 1px #222222 solid;
 	cursor: pointer;
-	box-sizing: border-box;
 	margin: 0px;
 	padding: 5px 15px;
 	display: inline-block;
 }
 
-label.fancyRadio:hover{
+label.fancyRadio:hover,
+button:hover{
 	background-color: #666666;
 }
 
