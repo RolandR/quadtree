@@ -39,7 +39,7 @@ canvas.onclick = function(e){
 			,e.clientY - container.offsetTop
 		);
 		//quadtree.doRender(canvas, context, infobox);
-		context.fillStyle = "#FFFF00";
+		context.fillStyle = "#0000FF";
 		context.fillRect(~~nearest.point.x-2, ~~nearest.point.y-2, 4, 4);
 	}
 };

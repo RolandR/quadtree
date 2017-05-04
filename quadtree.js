@@ -130,8 +130,8 @@ function Quadtree(width, height){
 	}
 
 	function doRender(canvas, context, infoBox){
-		context.strokeStyle = "#FFFFFF";
-		context.fillStyle = "#FF0000";
+		context.strokeStyle = "#666666";
+		context.fillStyle = "#FFAA00";
 		context.clearRect(0, 0, canvas.width, canvas.height);
 		if(count > 100000){
 			fastRender(root, width, height, context);
