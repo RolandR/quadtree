@@ -19,39 +19,11 @@ function Quadtree(width, height){
 	*/
 
 	var root = {
-		 internal: true
-		,centerX: width/2
+		 centerX: width/2
 		,centerY: height/2
 		,level: 0
 		,parent: null
 	};
-
-	root.children = [
-		{
-			 parent: root
-			,level: 1
-			,centerX: root.centerX - width /4
-			,centerY: root.centerY - height/4
-		},
-		{
-			 parent: root
-			,level: 1
-			,centerX: root.centerX + width /4
-			,centerY: root.centerY - height/4
-		},
-		{
-			 parent: root
-			,level: 1
-			,centerX: root.centerX - width /4
-			,centerY: root.centerY + height/4
-		},
-		{
-			 parent: root
-			,level: 1
-			,centerX: root.centerX + width /4
-			,centerY: root.centerY + height/4
-		}
-	];
 
 	function insert(value){
 		insertTo(value, root);
@@ -164,9 +136,10 @@ var quadtree = new Quadtree(canvas.width, canvas.height);
 quadtree.doRender();
 
 canvas.onclick = function(e){
+	console.log(e);
 	quadtree.insert({
-		 x: e.layerX
-		,y: e.layerY
+		 x: e.clientX - container.offsetLeft
+		,y: e.clientY - container.offsetTop
 	});
 	quadtree.doRender();
 }
