@@ -1,0 +1,49 @@
+
+
+*{
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+	border: none;
+}
+
+html, body{
+	height: 100%;
+}
+
+body {
+	font-family: sans-serif;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	background-color: #333333;
+	color: #FFFFFF;
+}
+
+a{
+	cursor: pointer;
+	color: #FFAA00;
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration: underline;
+}
+
+h1{
+	padding: 10px;
+	font-weight: 200;
+	color: #FFFFFF;
+}
+
+#canvasContainer{
+	flex-grow: 1;
+	width: 100%;
+	background-color: #000000;
+	cursor: crosshair;
+}
+
+footer{
+	text-align: right;
+	padding: 10px;
+}
