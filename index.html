@@ -38,8 +38,28 @@
 
 	
 	<body>
-		<h1>Quad Tree</h1>
+		<header>
+			<a id="title" href="./">
+				<h1>Quad Tree</h1>
+			</a>
+			<label for="mode">Click action: </label>
+			<div class="fancyRadio" id="mode">
+				<input class="fancyRadio" type="radio" value="insert" name="mode" id="mode-insert" checked>
+				<label class="fancyRadio" for="mode-insert">
+					Insert
+				</label>
+				<input class="fancyRadio" type="radio" value="nearest" name="mode" id="mode-nearest">
+				<label class="fancyRadio" for="mode-nearest">
+					Find nearest
+				</label>
+				<input class="fancyRadio" type="radio" value="delete" name="mode" id="mode-delete">
+				<label class="fancyRadio" for="mode-delete">
+					Find nearest and delete
+				</label>
+			</div>
+		</header>
 		<div id="canvasContainer">
+			<div id="infobox">Depth: 0</div>
 			<canvas id="canvas"></canvas>
 		</div>
 		<footer>
@@ -47,6 +67,7 @@
 		</footer>
 
 		<script type="text/javascript" src="./quadtree.js?v=2"></script>
+		<script type="text/javascript" src="./quadtreeTest.js?v=0"></script>
 	</body>
 	
 </html>

@@ -1,13 +1,4 @@
 
-var canvas = document.getElementById("canvas");
-var context = canvas.getContext("2d");
-var container = document.getElementById("canvasContainer");
-
-canvas.width = container.clientWidth;
-canvas.height = container.clientHeight;
-
-
-
 function Quadtree(width, height){
 
 	/*
@@ -17,6 +8,8 @@ function Quadtree(width, height){
 		| SW,2 | SE,3 |
 		+------+------+
 	*/
+
+	var depth = 0;
 
 	var root = {
 		 centerX: width/2
@@ -84,6 +77,7 @@ function Quadtree(width, height){
 						,centerY: node.centerY + height/Math.pow(2, node.level+2)
 					}
 				];
+				depth = Math.max(depth, node.level+1);
 				insertTo(node.content, node);
 				insertTo(value, node);
 				node.content = null;
@@ -91,11 +85,14 @@ function Quadtree(width, height){
 		}
 	}
 
-	function doRender(){
+	function doRender(canvas, context, infoBox){
 		context.strokeStyle = "#FFFFFF";
 		context.fillStyle = "#FF0000";
 		context.clearRect(0, 0, canvas.width, canvas.height);
 		render(root, width, height, context);
+		if(infoBox){
+			infoBox.innerHTML = "Depth: "+depth;
+		}
 	}
 	
 	function render(node, width, height, context){
@@ -130,18 +127,6 @@ function Quadtree(width, height){
 		,doRender: doRender
 	};
 	
-}
-
-var quadtree = new Quadtree(canvas.width, canvas.height);
-quadtree.doRender();
-
-canvas.onclick = function(e){
-	console.log(e);
-	quadtree.insert({
-		 x: e.clientX - container.offsetLeft
-		,y: e.clientY - container.offsetTop
-	});
-	quadtree.doRender();
 }
 
 

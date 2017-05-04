@@ -30,10 +30,22 @@ a:hover{
 	text-decoration: underline;
 }
 
+a#title:hover{
+	text-decoration: none;
+}
+
+a#title:hover > h1{
+	color: #FFAA00;
+}
+
 h1{
 	padding: 10px;
 	font-weight: 200;
 	color: #FFFFFF;
+	display: inline-block;
+	border-right: 1px #555555 solid;
+	margin-right: 10px;
+	text-shadow: 2px 2px 0px #000000;
 }
 
 #canvasContainer{
@@ -43,7 +55,42 @@ h1{
 	cursor: crosshair;
 }
 
+#infobox{
+	position: absolute;
+	padding: 5px;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
 footer{
 	text-align: right;
 	padding: 10px;
 }
+
+label.fancyRadio{
+	background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+	border: 1px #222222 solid;
+	cursor: pointer;
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 5px 15px;
+	display: inline-block;
+}
+
+label.fancyRadio:hover{
+	background-color: #666666;
+}
+
+input[type="radio"].fancyRadio{
+	display: none;
+}
+
+input[type="radio"]:checked + label.fancyRadio{
+	background-image: none;
+	background-color: #606060;
+}
+
+div.fancyRadio{
+	display: inline-block;
+}
+
+
