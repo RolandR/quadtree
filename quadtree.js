@@ -3,7 +3,7 @@
 
 	========================================================================
 
-	Point-Region Quad Tree
+	Point-Region Quadtree
 	
 	Copyright (C) 2017 Roland Rytz <roland@draemm.li>
 	Licensed under the GNU Affero General Public License Version 3

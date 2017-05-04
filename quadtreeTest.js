@@ -3,7 +3,7 @@
 
 	========================================================================
 
-	Point-Region Quad Tree
+	Point-Region Quadtree
 	
 	Copyright (C) 2017 Roland Rytz <roland@draemm.li>
 	Licensed under the GNU Affero General Public License Version 3
@@ -81,7 +81,7 @@ canvas.onmousedown = function(e){
 }
 
 document.getElementById("add100PointsButton").onclick = function(){
-	addRandomPoints(1000);
+	addRandomPoints(100);
 };
 
 document.getElementById("add1000PointsButton").onclick = function(){
