@@ -152,6 +152,85 @@ function Quadtree(width, height){
 		return best;
 	}
 
+	function remove(value){
+		removeDown(value, root);
+	}
+
+	function removeDown(value, node){
+		if(node.internal){
+			if(value.x > node.centerX){
+				if(value.y > node.centerY){
+					// SE
+					removeDown(value, node.children[3]);
+				} else {
+					// NE
+					removeDown(value, node.children[1]);
+				}
+			} else {
+				if(value.y > node.centerY){
+					// SW
+					removeDown(value, node.children[2]);
+				} else {
+					// NW
+					removeDown(value, node.children[0]);
+				}
+			}
+		} else {
+			if(node.leaf){
+				node.leaf = false;
+				node.content = null;
+				count--;
+				removeUp(node.parent);
+			}
+		}
+	}
+
+	function removeUp(node){
+		if(!node){
+			return;
+		}
+		if(node.children[0].internal || node.children[1].internal || node.children[2].internal || node.children[3].internal){
+			return;
+		} 
+		var childrenCount = 0;
+		var childContent = null;
+		
+		if(node.children[0].leaf){
+			childContent = node.children[0].content;
+			childrenCount++;
+		}
+		if(node.children[1].leaf){
+			childContent = node.children[1].content;
+			childrenCount++;
+		}
+		if(node.children[2].leaf){
+			childContent = node.children[2].content;
+			childrenCount++;
+		}
+		if(node.children[3].leaf){
+			childContent = node.children[3].content;
+			childrenCount++;
+		}
+
+		if(childrenCount > 1){
+			return;
+		} else if(childrenCount == 1){
+			node.internal = false;
+			node.leaf = true;
+			node.content = childContent;
+			node.children = null;
+			depth = null;
+			removeUp(node.parent);
+		} else if(childrenCount == 0){
+			node.internal = false;
+			node.leaf = false;
+			node.content = null;
+			node.children = null;
+			depth = null;
+			removeUp(node.parent);
+		}
+	}
+
 	function doRender(canvas, context, infoBox){
 		context.strokeStyle = "#666666";
 		context.fillStyle = "#FFAA00";
@@ -162,7 +241,11 @@ function Quadtree(width, height){
 			render(root, width, height, context);
 		}
 		if(infoBox){
-			infoBox.innerHTML = "Depth: "+depth+"<br>Points: "+count;
+			var depthText = depth;
+			if(depth === null){
+				depthText = "???"
+			}
+			infoBox.innerHTML = "Depth: "+depthText+"<br>Points: "+count;
 		}
 	}
 	
@@ -208,6 +291,7 @@ function Quadtree(width, height){
 		 insert: insert
 		,doRender: doRender
 		,getNearest: getNearest
+		,remove: remove
 	};
 	
 }

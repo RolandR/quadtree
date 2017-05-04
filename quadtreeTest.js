@@ -32,9 +32,9 @@ document.getElementById("mode-nearest").onclick = function(){
 	clickAction = "nearest";
 };
 
-/*document.getElementById("mode-delete").onclick = function(){
+document.getElementById("mode-delete").onclick = function(){
 	clickAction = "delete";
-};*/
+};
 
 
 var canvas = document.getElementById("canvas");
@@ -60,11 +60,25 @@ canvas.onclick = function(e){
 			 e.clientX - container.offsetLeft
 			,e.clientY - container.offsetTop
 		);
-		//quadtree.doRender(canvas, context, infobox);
 		context.fillStyle = "#0000FF";
 		context.fillRect(~~nearest.point.x-2, ~~nearest.point.y-2, 4, 4);
+	} else if(clickAction == "delete"){
+		var nearest = quadtree.getNearest(
+			 e.clientX - container.offsetLeft
+			,e.clientY - container.offsetTop
+		);
+		quadtree.remove(nearest.point);
+		quadtree.doRender(canvas, context, infobox);
 	}
+
+	e.preventDefault();
+	return false;
 };
+
+canvas.onmousedown = function(e){
+	e.preventDefault();
+	return false;
+}
 
 document.getElementById("add100PointsButton").onclick = function(){
 	addRandomPoints(1000);
@@ -102,7 +116,7 @@ document.getElementById("redrawButton").onclick = function(){
 
 document.getElementById("clearButton").onclick = function(){
 	quadtree = new Quadtree(canvas.width, canvas.height);
-	quadtree.doRender(canvas, context);
+	quadtree.doRender(canvas, context, infobox);
 };
 
 
